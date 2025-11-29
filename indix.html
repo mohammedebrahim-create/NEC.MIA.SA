@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>بوابة الشؤون الإدارية - كلية الشمال للتمريض الأهلية</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Tahoma, "Cairo", sans-serif;
+      background: #0f172a;
+      color: #0f172a;
+      line-height: 1.7;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    /* صفحة كاملة */
+    .page-wrapper {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top left, rgba(56, 189, 248, 0.18), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(94, 234, 212, 0.18), transparent 50%),
+        #020617;
+      padding: 24px 12px 40px;
+    }
+
+    /* حاوية المحتوى */
+    .shell {
+      max-width: 1100px;
+      margin: 0 auto;
+      background: rgba(15, 23, 42, 0.97);
+      border-radius: 18px;
+      box-shadow:
+        0 18px 45px rgba(0, 0, 0, 0.55),
+        0 0 0 1px rgba(148, 163, 184, 0.15);
+      padding: 24px 22px 32px;
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      backdrop-filter: blur(18px);
+    }
+
+    @media (min-width: 900px) {
+      .shell {
+        padding: 32px 36px 40px;
+        border-radius: 24px;
+      }
+    }
+
+    /* الهيدر */
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 26px;
+    }
+
+    .logo-holder {
+      width: 70px;
+      height: 70px;
+      border-radius: 18px;
+      background: radial-gradient(circle at 30% 0%, #e5f3ff, #38bdf8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow:
+        0 10px 25px rgba(56, 189, 248, 0.6),
+        0 0 0 1px rgba(15, 23, 42, 0.6);
+      overflow: hidden;
+    }
+
+    .logo-holder span {
+      font-size: 11px;
+      text-align: center;
+      color: #0f172a;
+      font-weight: 600;
+    }
+
+    .header-text h1 {
+      font-size: 20px;
+      color: #e5e7eb;
+      margin-bottom: 4px;
+    }
+
+    .header-text p {
+      font-size: 13px;
+      color: #9ca3af;
+    }
+
+    @media (min-width: 768px) {
+      .header-text h1 {
+        font-size: 24px;
+      }
+      .header-text p {
+        font-size: 14px;
+      }
+    }
+
+    /* الهيرو */
+    .hero {
+      margin-bottom: 26px;
+      padding: 18px 16px 20px;
+      border-radius: 18px;
+      background: radial-gradient(circle at top right, rgba(56, 189, 248, 0.16), transparent 55%),
+                  linear-gradient(135deg, #020617, #020617);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset-inline-start: -120px;
+      bottom: -120px;
+      width: 260px;
+      height: 260px;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.16), transparent 60%);
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      font-size: 11px;
+      color: #e5e7eb;
+      margin-bottom: 10px;
+    }
+
+    .hero-badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.3);
+    }
+
+    .hero-title {
+      font-size: 19px;
+      color: #f9fafb;
+      margin-bottom: 8px;
+    }
+
+    .hero-subtitle {
+      font-size: 13px;
+      color: #9ca3af;
+      max-width: 750px;
+    }
+
+    @media (min-width: 768px) {
+      .hero {
+        padding: 22px 22px 24px;
+      }
+      .hero-title {
+        font-size: 22px;
+      }
+      .hero-subtitle {
+        font-size: 14px;
+      }
+    }
+
+    /* شبكة البطاقات */
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    @media (min-width: 768px) {
+      .grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (min-width: 1100px) {
+      .grid {
+        grid-template-columns: 1.1fr 1.1fr;
+      }
+    }
+
+    .card {
+      position: relative;
+      background: radial-gradient(circle at top, rgba(248, 250, 252, 0.02), transparent 55%),
+                  #020617;
+      border-radius: 18px;
+      padding: 16px 15px 16px;
+      border: 1px solid rgba(31, 41, 55, 0.9);
+      box-shadow: 0 16px 35px rgba(15, 23, 42, 0.8);
+      overflow: hidden;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset-inline-start: 0;
+      top: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, #22c55e, #38bdf8, #a855f7);
+      opacity: 0.9;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow:
+        0 22px 45px rgba(15, 23, 42, 0.85),
+        0 0 0 1px rgba(148, 163, 184, 0.35);
+      border-color: rgba(148, 163, 184, 0.6);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .card-title {
+      font-size: 15px;
+      color: #e5e7eb;
+      font-weight: 600;
+    }
+
+    .card-tag {
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      color: #cbd5f5;
+      white-space: nowrap;
+    }
+
+    .card-body {
+      font-size: 13px;
+      color: #9ca3af;
+      margin-bottom: 10px;
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+
+    .chip {
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      font-size: 11px;
+      color: #d1d5db;
+    }
+
+    .card-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px 11px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 500;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: background-color 0.16s ease, color 0.16s ease, border-color 0.16s ease, transform 0.12s ease;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #22c55e, #38bdf8);
+      color: #0b1220;
+      border-color: rgba(34, 197, 94, 0.4);
+      box-shadow: 0 10px 22px rgba(56, 189, 248, 0.4);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 30px rgba(56, 189, 248, 0.55);
+    }
+
+    .btn-ghost {
+      background: rgba(15, 23, 42, 0.9);
+      color: #e5e7eb;
+      border-color: rgba(75, 85, 99, 0.8);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(15, 23, 42, 1);
+      border-color: rgba(148, 163, 184, 0.7);
+      transform: translateY(-1px);
+    }
+
+    .btn span {
+      font-size: 14px;
+      line-height: 0;
+      margin-inline-start: 4px;
+    }
+
+    /* كرت بعرض كامل */
+    .card-full {
+      grid-column: 1 / -1;
+    }
+
+    /* الفوتر */
+    .footer {
+      margin-top: 22px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(55, 65, 81, 0.9);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      justify-content: space-between;
+      font-size: 11px;
+      color: #6b7280;
+    }
+
+    .footer span strong {
+      color: #e5e7eb;
+      font-weight: 600;
+    }
+
+    @media (max-width: 600px) {
+      .footer {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrapper">
+    <main class="shell" aria-label="بوابة الشؤون الإدارية">
+
+      <!-- الهيدر -->
+      <header class="header">
+        <div class="logo-holder">
+          <!-- استبدل هذا النص بصورة شعار الكلية إن رغبت -->
+          <!-- مثال:
+          <img src="https://your-logo-link.png" alt="شعار كلية الشمال للتمريض الأهلية" />
+          -->
+          <span>شعار<br>الكلية</span>
+        </div>
+        <div class="header-text">
+          <h1>بوابة الشؤون الإدارية - كلية الشمال للتمريض الأهلية</h1>
+          <p>واجهة موحّدة للأنظمة والنماذج الإدارية داخل الكلية.</p>
+        </div>
+      </header>
+
+      <!-- الهيرو -->
+      <section class="hero">
+        <div class="hero-badge">
+          <div class="hero-badge-dot"></div>
+          منصة إلكترونية متكاملة لإدارة النماذج والإجراءات
+        </div>
+        <h2 class="hero-title">منصّة موحّدة لتنظيم العمل الإداري ورفع كفاءة المتابعة</h2>
+        <p class="hero-subtitle">
+          منصة إلكترونية متكاملة تهدف إلى توحيد النماذج والإجراءات الإدارية وتسهيل سير العمل داخل الكلية،
+          من خلال تنظيم عمليات الحجز والطباعة ورفع التقارير وتوثيق الملاحظات والمقترحات، بما يسهم في تحسين جودة
+          الأداء الإداري ورفع كفاءة التنظيم والإنجاز.
+        </p>
+      </section>
+
+      <!-- البطاقات الرئيسية -->
+      <section aria-label="الأنظمة الإدارية" class="grid">
+
+        <!-- نظام التقارير الإدارية ومتابعة الأداء -->
+        <article class="card">
+          <div class="card-header">
+            <h3 class="card-title">نظام التقارير الإدارية ومتابعة الأداء</h3>
+            <span class="card-tag">متابعة يومية</span>
+          </div>
+          <p class="card-body">
+            يهدف هذا النظام إلى توثيق التقارير اليومية لمنسوبي الأقسام الإدارية ومتابعة سير العمل وقياس الأداء،
+            ضمن منظومة إلكترونية تساعد على رفع جودة الإنجاز وتحسين الكفاءة التنظيمية.
+          </p>
+          <div class="chip-row">
+            <span class="chip">تقارير يومية</span>
+            <span class="chip">متابعة الأداء</span>
+            <span class="chip">تحسين الكفاءة</span>
+          </div>
+          <div class="card-actions">
+            <a class="btn btn-primary"
+               href="https://docs.google.com/forms/d/e/1FAIpQLSeS4WzPJq1VO1j2bvwCKDkMx6NG6yAQZAA6FOlxkD8r6Ui8lA/viewform"
+               target="_blank" rel="noopener">
+              نموذج رفع التقارير اليومية
+              <span>↗</span>
+            </a>
+            <a class="btn btn-ghost"
+               href="https://docs.google.com/document/d/1eh8P4zBdVY-i8Wl1Ra-YpLuVsR2_kGzpTzfC-0MBYGs/edit"
+               target="_blank" rel="noopener">
+              دليل إعداد التقارير اليومية
+              <span>📄</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- حجز قاعة الاجتماعات -->
+        <article class="card">
+          <div class="card-header">
+            <h3 class="card-title">حجز قاعة الاجتماعات | قاعة الدلما (رحمها الله)</h3>
+            <span class="card-tag">تنسيق القاعات</span>
+          </div>
+          <p class="card-body">
+            نظام حجز إلكتروني لقاعات الاجتماعات في مباني الكلية، يهدف إلى تنظيم استخدام القاعات وضمان توفرها
+            بحسب الحاجة التشغيلية والاجتماعات الرسمية.
+          </p>
+          <div class="chip-row">
+            <span class="chip">مبنى الروابي</span>
+            <span class="chip">مبنى المروج</span>
+            <span class="chip">قاعة الدلما</span>
+          </div>
+          <div class="card-actions">
+            <a class="btn btn-primary"
+               href="https://calendar.app.google/8xL8XhUtARPfqfV48"
+               target="_blank" rel="noopener">
+              حجز قاعة الاجتماعات - مبنى الروابي
+              <span>🏢</span>
+            </a>
+            <a class="btn btn-ghost"
+               href="https://calendar.app.google/5qekyKXwcZpSPkqNA"
+               target="_blank" rel="noopener">
+              حجز قاعة الاجتماعات - مبنى المروج
+              <span>🏢</span>
+            </a>
+            <a class="btn btn-ghost"
+               href="https://calendar.app.google/LDWeMgrLN2MmWWvx8"
+               target="_blank" rel="noopener">
+              حجز قاعة الدلما - المسرح
+              <span>🎭</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- الاختبارات والطباعة -->
+        <article class="card card-full">
+          <div class="card-header">
+            <h3 class="card-title">الاختبارات والطباعة</h3>
+            <span class="card-tag">تنظيم الاختبارات</span>
+          </div>
+          <p class="card-body">
+            حزمة أدوات إلكترونية لتنظيم عمليات طباعة وتصوير الاختبارات، وحجز الطابعات، وتوثيق العمليات المرتبطة
+            بها، مع إتاحة الجداول الزمنية للاختبارات وعمليات التصوير للمسؤولين المعنيين.
+          </p>
+          <div class="chip-row">
+            <span class="chip">توثيق الطباعة</span>
+            <span class="chip">حجز الطابعات</span>
+            <span class="chip">جداول الاختبارات</span>
+            <span class="chip">تنظيم العمليات</span>
+          </div>
+          <div class="card-actions">
+            <a class="btn btn-primary"
+               href="https://forms.gle/uF71CTgTn6MSHsCp8"
+               target="_blank" rel="noopener">
+              نموذج توثيق عمليات الطباعة
+              <span>🖨</span>
+            </a>
+            <a class="btn btn-ghost"
+               href="https://www.google.com/url?q=https://docs.google.com/presentation/d/1cpVLRH2XexzQYz5fHVD3oqRPyq8yvGcS-U9KleiWDww/edit?usp%3Ddrivesdk&sa=D&source=docs&ust=1732723311747491&usg=AOvVaw2njWxG4dVxfdFadaeZTehY"
+               target="_blank" rel="noopener">
+              دليل طباعة الاختبارات (عرض)
+              <span>📊</span>
+            </a>
+            <a class="btn btn-ghost"
+               href="https://calendar.app.google/rjbrmNaUSZZiCdFt8"
+               target="_blank" rel="noopener">
+              حجز طابعة الاختبارات - مبنى المروج
+              <span>🖨</span>
+            </a>
+            <a class="btn btn-ghost"
+               href="https://calendar.app.google/X3jqqPxw1TAH1GMP6"
+               target="_blank" rel="noopener">
+              حجز طابعة الاختبارات - مبنى الروابي
+              <span>🖨</span>
+            </a>
+            <a class="btn btn-ghost"
+               href="https://drive.google.com/file/d/1IDFn2Jc0Y5xnekNp4OfqYNd3XzME3hT0/view?usp=sharing"
+               target="_blank" rel="noopener">
+              جدول اختبارات | منتصف الفصل الدراسي الأول 2025–2026
+              <span>📅</span>
+            </a>
+            <a class="btn btn-ghost"
+               href="https://drive.google.com/file/d/1-mV89JZv5gBll4HWosxzQSDc-KKisy5T/view?usp=sharing"
+               target="_blank" rel="noopener">
+              جدول مواعيد تصوير الاختبارات | منتصف الفصل الدراسي الأول 2025–2026
+              <span>📅</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- الملاحظات والمقترحات التطويرية -->
+        <article class="card card-full">
+          <div class="card-header">
+            <h3 class="card-title">الملاحظات والمقترحات التطويرية</h3>
+            <span class="card-tag">تحسين مستمر</span>
+          </div>
+          <p class="card-body">
+            يهدف هذا القسم إلى استقبال الملاحظات والمقترحات من منسوبي الكلية من الأكاديميين والإداريين،
+            بما يسهم في تطوير مرافق المبنى، وتحسين بيئة العمل والخدمات المقدمة للطلبة، وتطوير القاعات والمعامل.
+            تُراجع جميع النماذج من قبل الإدارة المختصة لاتخاذ ما يلزم حيالها ومتابعة تنفيذ المقترحات المناسبة.
+          </p>
+          <div class="chip-row">
+            <span class="chip">مقترحات تطويرية</span>
+            <span class="chip">تحسين بيئة العمل</span>
+            <span class="chip">خدمة الطلبة</span>
+          </div>
+          <div class="card-actions">
+            <a class="btn btn-primary"
+               href="https://docs.google.com/forms/d/e/1FAIpQLSd22nJu0zWdjLJtPTQtZjwkIt1pct1NStUcjiixEQKkx7JtIQ/viewform?usp=sf_link"
+               target="_blank" rel="noopener">
+              نموذج ملاحظات ومقترحات الأكاديميين
+              <span>🎓</span>
+            </a>
+            <a class="btn btn-ghost"
+               href="https://docs.google.com/forms/d/e/1FAIpQLScUT2cNUtaiyVlmMWr3rwtiMDh_AffSn9WroAo1N9hFf1oy-w/viewform"
+               target="_blank" rel="noopener">
+              نموذج ملاحظات ومقترحات الإداريين
+              <span>🧩</span>
+            </a>
+          </div>
+        </article>
+
+      </section>
+
+      <!-- الفوتر -->
+      <footer class="footer">
+        <span>إعداد وتصميم: <strong>أ. محمد إبراهيم العنزي</strong> — وحدة الشؤون الإدارية</span>
+        <span>آخر تحديث: 18 أكتوبر 2025</span>
+      </footer>
+
+    </main>
+  </div>
+</body>
+</html>

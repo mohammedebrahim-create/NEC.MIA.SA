@@ -53,6 +53,33 @@
       }
     }
 
+    /* شريط علوي (زر الوضع الداكن/الفاتح) */
+    .topbar {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 10px;
+    }
+
+    .theme-toggle {
+      padding: 4px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: rgba(15, 23, 42, 0.9);
+      color: #e5e7eb;
+      font-size: 11px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.16s ease, color 0.16s ease, border-color 0.16s ease, transform 0.12s ease;
+    }
+
+    .theme-toggle:hover {
+      background: rgba(15, 23, 42, 1);
+      border-color: rgba(148, 163, 184, 0.9);
+      transform: translateY(-1px);
+    }
+
     /* الهيدر */
     .header {
       display: flex;
@@ -65,21 +92,21 @@
       width: 80px;
       height: 80px;
       border-radius: 18px;
-      background: radial-gradient(circle at 30% 0%, #ffffff, #38bdf8);
+      background: #ffffff; /* خلفية بيضاء للشعار */
       display: flex;
       align-items: center;
       justify-content: center;
       box-shadow:
-        0 10px 25px rgba(56, 189, 248, 0.6),
-        0 0 0 1px rgba(15, 23, 42, 0.6);
+        0 10px 25px rgba(15, 23, 42, 0.65),
+        0 0 0 1px rgba(15, 23, 42, 0.9);
       overflow: hidden;
     }
 
     .logo-holder img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;  
-}
+      width: 90%;
+      height: 90%;
+      object-fit: contain;
+    }
 
     .header-text h1 {
       font-size: 20px;
@@ -193,8 +220,7 @@
 
     .card {
       position: relative;
-      background: radial-gradient(circle at top, rgba(248, 250, 252, 0.02), transparent 55%),
-                  #020617;
+      background: #020617;
       border-radius: 18px;
       padding: 16px 15px 16px;
       border: 1px solid rgba(31, 41, 55, 0.9);
@@ -346,11 +372,120 @@
         flex-direction: column;
       }
     }
+
+    /* ---------------------- */
+    /*   وضع الفاتح (Light)   */
+    /* ---------------------- */
+
+    body.light {
+      background: #e5e7eb;
+      color: #0f172a;
+    }
+
+    body.light .page-wrapper {
+      background: #e5e7eb;
+    }
+
+    body.light .shell {
+      background: #ffffff;
+      border-color: rgba(148, 163, 184, 0.35);
+      box-shadow:
+        0 10px 30px rgba(15, 23, 42, 0.12),
+        0 0 0 1px rgba(148, 163, 184, 0.25);
+    }
+
+    body.light .hero {
+      background: radial-gradient(circle at top right, rgba(56, 189, 248, 0.08), transparent 55%),
+                  linear-gradient(135deg, #ffffff, #f9fafb);
+      border-color: rgba(148, 163, 184, 0.6);
+    }
+
+    body.light .hero-badge {
+      background: rgba(248, 250, 252, 0.95);
+      color: #0f172a;
+      border-color: rgba(148, 163, 184, 0.7);
+    }
+
+    body.light .hero-title {
+      color: #0f172a;
+    }
+
+    body.light .hero-subtitle {
+      color: #4b5563;
+    }
+
+    body.light .header-text h1 {
+      color: #111827;
+    }
+
+    body.light .header-text p {
+      color: #4b5563;
+    }
+
+    body.light .card {
+      background: #f9fafb;
+      border-color: rgba(148, 163, 184, 0.7);
+      box-shadow:
+        0 10px 24px rgba(15, 23, 42, 0.12);
+    }
+
+    body.light .card-title {
+      color: #0f172a;
+    }
+
+    body.light .card-body {
+      color: #4b5563;
+    }
+
+    body.light .chip {
+      background: #ffffff;
+      border-color: rgba(148, 163, 184, 0.8);
+      color: #374151;
+    }
+
+    body.light .btn-ghost {
+      background: #ffffff;
+      color: #111827;
+      border-color: rgba(148, 163, 184, 0.9);
+    }
+
+    body.light .btn-ghost:hover {
+      background: #f3f4f6;
+    }
+
+    body.light .footer {
+      border-top-color: rgba(148, 163, 184, 0.7);
+      color: #6b7280;
+    }
+
+    body.light .footer span strong {
+      color: #111827;
+    }
+
+    body.light .theme-toggle {
+      background: #f9fafb;
+      color: #111827;
+      border-color: rgba(148, 163, 184, 0.9);
+    }
+
+    body.light .logo-holder {
+      box-shadow:
+        0 8px 18px rgba(15, 23, 42, 0.16),
+        0 0 0 1px rgba(148, 163, 184, 0.6);
+      background: #ffffff;
+    }
   </style>
 </head>
 <body>
   <div class="page-wrapper">
     <main class="shell" aria-label="بوابة الشؤون الإدارية">
+
+      <!-- الشريط العلوي (زر الوضع) -->
+      <div class="topbar">
+        <button id="themeToggle" class="theme-toggle" type="button">
+          الوضع الفاتح
+        </button>
+      </div>
 
       <!-- الهيدر -->
       <header class="header">
@@ -400,7 +535,7 @@
                href="https://docs.google.com/forms/d/e/1FAIpQLSeS4WzPJq1VO1j2bvwCKDkMx6NG6yAQZAA6FOlxkD8r6Ui8lA/viewform"
                target="_blank" rel="noopener">
               نموذج رفع التقارير اليومية
-              <span>↗</span>
+              <span>↗️</span>
             </a>
             <a class="btn btn-ghost"
                href="https://docs.google.com/document/d/1eh8P4zBdVY-i8Wl1Ra-YpLuVsR2_kGzpTzfC-0MBYGs/edit"
@@ -546,9 +681,29 @@
 
     </main>
   </div>
+
+  <!-- سكربت تبديل الوضع -->
+  <script>
+    (function () {
+      const body = document.body;
+      const btn = document.getElementById("themeToggle");
+
+      // قراءة القيمة المخزنة (إن وجدت)
+      const stored = localStorage.getItem("necAdminTheme");
+      if (stored === "light") {
+        body.classList.add("light");
+        btn.textContent = "الوضع الداكن";
+      } else {
+        btn.textContent = "الوضع الفاتح";
+      }
+
+      btn.addEventListener("click", function () {
+        body.classList.toggle("light");
+        const isLight = body.classList.contains("light");
+        btn.textContent = isLight ? "الوضع الداكن" : "الوضع الفاتح";
+        localStorage.setItem("necAdminTheme", isLight ? "light" : "dark");
+      });
+    })();
+  </script>
 </body>
-
 </html>
-
-
-
